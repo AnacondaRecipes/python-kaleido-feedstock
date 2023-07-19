@@ -11,8 +11,8 @@ source:
 
 build:
   number: 0
-  # kaleido-core=0.2.1 isn't available on s390x
-  skip: true  # [s390x]
+  # kaleido-core=0.2.1 isn't available on s390x or ppc64le, see https://github.com/AnacondaRecipes/kaleido-core-feedstock/blob/d512c9bd10c86d252a6dfc3f0f9057e64ff92fba/recipe/meta.yaml#L26
+  skip: true  # [linux and (s390x or ppc64le)]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
