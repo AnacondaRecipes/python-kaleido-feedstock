@@ -11,22 +11,24 @@ source:
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  skip: True  # [py<37]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   host:
-    - python >=3.5
+    - python
     - pip
+    - setuptools
+    - wheel
   run:
-    - python >=3.5
+    - python
     - kaleido-core ={{ version }}
 
 test:
+  # imports are inside run_test.py
   requires:
     - plotly >=4.10
-  imports:
-    - kaleido
+    - pip
 
 about:
   home: https://github.com/plotly/Kaleido
