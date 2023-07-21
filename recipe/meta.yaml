@@ -11,22 +11,25 @@ source:
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  # kaleido-core=0.2.1 isn't available on s390x or ppc64le, see https://github.com/AnacondaRecipes/kaleido-core-feedstock/blob/d512c9bd10c86d252a6dfc3f0f9057e64ff92fba/recipe/meta.yaml#L26
+  skip: true  # [linux and (s390x or ppc64le)]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   host:
-    - python >=3.5
+    - python
     - pip
+    - setuptools
+    - wheel
   run:
-    - python >=3.5
+    - python
     - kaleido-core ={{ version }}
 
 test:
+  # imports are inside run_test.py
   requires:
     - plotly >=4.10
-  imports:
-    - kaleido
+    - pip
 
 about:
   home: https://github.com/plotly/Kaleido
