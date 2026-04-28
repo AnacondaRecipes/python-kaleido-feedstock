@@ -1,5 +1,5 @@
 {% set name = "python-kaleido" %}
-{% set version = "0.2.1" %}
+{% set version = "1.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/plotly/Kaleido/releases/download/v{{ version }}/kaleido-{{ version }}.tar.gz
-  sha256: fdb673a9759835d4f455990fc1ff8919bd100a0d34f2d3de7bd5eeb2162b57ec
+  sha256: fa621a14423e8effa2895a2526be00af0cf21655be1b74b7e382c171d12e71ef
 
 build:
   number: 0
@@ -19,17 +19,25 @@ requirements:
   host:
     - python
     - pip
-    - setuptools
+    - setuptools >=65.0.0
     - wheel
+    - setuptools-git-versioning
   run:
     - python
     - kaleido-core ={{ version }}
+    - choreographer >=1.1.1
+    - logistro >=1.0.8
+    - orjson >=3.10.15
+    - packaging
+    - pytest-timeout >=2.4.0
 
 test:
   # imports are inside run_test.py
   requires:
     - plotly >=4.10
     - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/plotly/Kaleido
