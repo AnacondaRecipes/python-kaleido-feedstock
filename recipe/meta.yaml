@@ -41,8 +41,14 @@ test:
     # which exits non-zero on a sterile Windows CI worker (no Chrome). Same
     # gating pattern as choreographer-feedstock (commits e8ea099, 9d1f67f).
     - kaleido_get_chrome --help  # [not win]
+    # Small smoke test: verify kaleido is importable alongside plotly and that
+    # the public surface (`Kaleido`, `write_fig`, `PageGenerator`) is reachable.
+    # We don't render here because that requires a real Chrome download — see
+    # the post-link message and `kaleido_get_chrome` for that path.
+    - python -c "import plotly.graph_objects as go; import kaleido; assert callable(kaleido.write_fig) and kaleido.Kaleido is not None and kaleido.PageGenerator is not None"
   requires:
     - pip
+    - plotly >=6.1.1
 
 about:
   home: https://github.com/plotly/kaleido
