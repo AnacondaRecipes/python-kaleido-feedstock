@@ -49,11 +49,7 @@ about:
   summary: Plotly graph export library
   description: |
     Kaleido is a cross-platform library for generating static images
-    (PNG, JPG, PDF, SVG, WebP, JSON) from Plotly figures. Version 1.x
-    is a major rewrite: instead of a bundled Chromium, it drives a
-    user-installed Google Chrome via the choreographer browser-control
-    library. Run `kaleido_get_chrome` once to download Chrome, then
-    use `kaleido.Kaleido` from Python to render figures.
+    (PNG, JPG, PDF, SVG, WebP, JSON) from Plotly figures.
   license: MIT
   license_family: MIT
   license_file: LICENSE.md
